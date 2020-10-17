@@ -10,7 +10,7 @@ import {
 import MapView, { Marker } from "react-native-maps";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 
-import mapMarkerImg from "../images/map-marker.png";
+import mapMarkerImg from "../../images/map-marker.png";
 import { RectButton } from "react-native-gesture-handler";
 
 const OrphanageDetails: React.FC = () => {

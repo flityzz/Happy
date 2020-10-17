@@ -15,12 +15,8 @@ import { useNavigation } from "@react-navigation/native";
 const OrphanageMap: React.FC = () => {
   const navigation = useNavigation();
 
-  function handleNavigateToOrphanageDetails() {
-    navigation.navigate("OrphanageDetails");
-  }
-
   function handleNavigateToCreateOrphanage(){
-    navigation.navigate("CreateOrphanage");
+    navigation.navigate("SelectMapPosition");
   }
 
   return (
@@ -46,7 +42,7 @@ const OrphanageMap: React.FC = () => {
             longitude: -38.5568536,
           }}
         >
-          <Callout tooltip={true} onPress={handleNavigateToOrphanageDetails}>
+          <Callout tooltip={true} onPress={() => {}}>
             <View style={styles.calloutContainer}>
               <Text style={styles.calloutText}>Nome do orfanato</Text>
             </View>
