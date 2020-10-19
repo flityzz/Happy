@@ -7,12 +7,13 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { Feather, FontAwesome } from "@expo/vector-icons";
-import mapMarkerImg from "../../images/map-marker.png";
+import mapMarker from "../../images/map-marker.png";
 import { RectButton, TouchableOpacity } from "react-native-gesture-handler";
 import { useRoute } from "@react-navigation/native";
-import {Linking} from 'react-native'
+import { Linking } from "react-native";
+
 
 import api from "../../services/api";
 
@@ -48,11 +49,13 @@ const OrphanageDetails: React.FC = () => {
   }, [params.id]);
 
   if (!orphanage) {
-    return <Text>Carregando..</Text>;
+    return <Text>carregando...</Text>;
   }
 
-  function handleOpenGoogleMapsRoute(){
-    Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${orphanage?.latitude},${orphanage?.longitude}`)
+  function handleOpenGoogleMapsRoute() {
+    Linking.openURL(
+      `https://www.google.com/maps/dir/?api=1&destination=${orphanage?.latitude},${orphanage?.longitude}`
+    );
   }
 
   return (
@@ -77,6 +80,7 @@ const OrphanageDetails: React.FC = () => {
 
         <View style={styles.mapContainer}>
           <MapView
+            provider={PROVIDER_GOOGLE}
             initialRegion={{
               latitude: orphanage.latitude,
               longitude: orphanage.longitude,
@@ -90,7 +94,7 @@ const OrphanageDetails: React.FC = () => {
             style={styles.mapStyle}
           >
             <Marker
-              icon={mapMarkerImg}
+              icon={mapMarker}
               coordinate={{
                 latitude: orphanage.latitude,
                 longitude: orphanage.longitude,
@@ -98,7 +102,10 @@ const OrphanageDetails: React.FC = () => {
             />
           </MapView>
 
-          <TouchableOpacity style={styles.routesContainer} onPress={handleOpenGoogleMapsRoute}>
+          <TouchableOpacity
+            style={styles.routesContainer}
+            onPress={handleOpenGoogleMapsRoute}
+          >
             <Text style={styles.routesText}>Ver rotas no Google Maps</Text>
           </TouchableOpacity>
         </View>

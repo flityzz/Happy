@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useFocusEffect } from '@react-navigation/native'
 import {
   StyleSheet,
   Text,
@@ -23,11 +24,11 @@ interface Orphanage {
 const OrphanageMap: React.FC = () => {
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
 
-  useEffect(() => {
+  useFocusEffect(() => {
     api.get("orphanages").then((response) => {
       setOrphanages(response.data);
     });
-  }, []);
+  });
 
   const navigation = useNavigation();
 
