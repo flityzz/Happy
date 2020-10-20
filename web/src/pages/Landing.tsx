@@ -21,6 +21,8 @@ function Landing() {
           <span>Ceará</span>
         </div>
 
+        <Link to={'/'} className="enter-login">Acesso Restrito</Link>
+
         <Link to="/app" className="enter-app">
           <FiArrowRight size={26} color="rgba(0, 0, 0, 0.6)" />
         </Link>
