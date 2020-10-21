@@ -24,7 +24,7 @@ export default function Login() {
     console.log({
       email,
       password,
-      remember_me
+      remember_me,
     });
   }
 
@@ -33,10 +33,13 @@ export default function Login() {
       <LoginBackground />
       <aside>
         <Link to="/" className="return">
-          <FiArrowLeft color="#15C3D6" style={{
-            height: 24,
-            width: 24
-          }}/>
+          <FiArrowLeft
+            color="#15C3D6"
+            style={{
+              height: 24,
+              width: 24,
+            }}
+          />
         </Link>
         <form className="login-wrapper" onSubmit={handleSubmit}>
           <h1>Fazer Login</h1>
@@ -44,22 +47,42 @@ export default function Login() {
           <label htmlFor="email">
             <span>E-mail</span>
           </label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
+          {remember_me === true ? (
+            <input
+              type="email"
+              id="email"
+              value={email}
+              className="avaliableInput"
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          ) : (
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          )}
 
           <label htmlFor="password">
             <span>Senha</span>
           </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          {remember_me === true ? (
+            <input
+              type="password"
+              id="password"
+              value={password}
+              className="avaliableInput"
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          ) : (
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          )}
 
           <div className="options">
             <div className="remember-me">
@@ -81,7 +104,9 @@ export default function Login() {
           </div>
 
           {password === "" ? (
-            <button className="enter-not-avaliable" disabled>Entrar</button>
+            <button className="enter-not-avaliable" disabled>
+              Entrar
+            </button>
           ) : (
             <button className="enter">Entrar</button>
           )}

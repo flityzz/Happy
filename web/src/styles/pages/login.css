@@ -72,8 +72,12 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-
   color: #5c8599;
+  outline: none;
+}
+
+#login-container aside .login-wrapper input.avaliableInput{
+  border: 1px solid #A1E9C5;
 }
 
 #login-container aside .login-wrapper .enter {
