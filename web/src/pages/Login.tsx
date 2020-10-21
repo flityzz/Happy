@@ -47,7 +47,7 @@ export default function Login() {
           <label htmlFor="email">
             <span>E-mail</span>
           </label>
-          {remember_me === true ? (
+          {email !== "" ? (
             <input
               type="email"
               id="email"
@@ -67,7 +67,7 @@ export default function Login() {
           <label htmlFor="password">
             <span>Senha</span>
           </label>
-          {remember_me === true ? (
+          {password !== "" ? (
             <input
               type="password"
               id="password"
