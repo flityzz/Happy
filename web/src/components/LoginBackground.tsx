@@ -7,7 +7,7 @@ export default function LoginPage(){
     return (
         <div id="content-wrapper">
             <div className="landing">
-                <img className="logo" src={logoSvg}></img>
+                <img className="logo" src={logoSvg} alt="logo"></img>
             </div>    
         </div>
     );

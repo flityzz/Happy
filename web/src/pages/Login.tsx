@@ -1,36 +1,91 @@
-import React from "react";
+import React, { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/pages/login.css";
+import { FiCheck, FiArrowLeft } from "react-icons/fi";
 
 import LoginBackground from "../components/LoginBackground";
 
 export default function Login() {
+  const [remember_me, setRemember_me] = useState<boolean>(false);
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  function handleCheckedClick() {
+    if (remember_me === false) {
+      setRemember_me(true);
+    } else {
+      setRemember_me(false);
+    }
+  }
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    console.log({
+      email,
+      password,
+      remember_me
+    });
+  }
+
   return (
     <div id="login-container">
       <LoginBackground />
       <aside>
-        <div className="login-wrapper">
+        <Link to="/" className="return">
+          <FiArrowLeft color="#15C3D6" style={{
+            height: 24,
+            width: 24
+          }}/>
+        </Link>
+        <form className="login-wrapper" onSubmit={handleSubmit}>
           <h1>Fazer Login</h1>
 
-          <span>E-mail</span>
-          <input type="text" />
+          <label htmlFor="email">
+            <span>E-mail</span>
+          </label>
+          <input
+            type="text"
+            id="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
 
-          <span>Senha</span>
-          <input type="password" />
+          <label htmlFor="password">
+            <span>Senha</span>
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
 
           <div className="options">
             <div className="remember-me">
-              <div className="checkbox"></div>
+              {remember_me ? (
+                <label className="check-box-true" onClick={handleCheckedClick}>
+                  <FiCheck size={20} />
+                </label>
+              ) : (
+                <label
+                  className="check-box-false"
+                  onClick={handleCheckedClick}
+                ></label>
+              )}
               <span>Lembrar-me</span>
             </div>
-
-            <div className="forgot-password">
+            <Link to="/" className="forgot-password">
               <span>Esqueci minha senha</span>
-            </div>
+            </Link>
           </div>
-          <button className="enter" type="submit">
-            Entrar
-          </button>
-        </div>
+
+          {password === "" ? (
+            <button className="enter-not-avaliable" disabled>Entrar</button>
+          ) : (
+            <button className="enter">Entrar</button>
+          )}
+        </form>
       </aside>
     </div>
   );
