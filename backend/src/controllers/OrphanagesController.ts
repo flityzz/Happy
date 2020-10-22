@@ -45,6 +45,8 @@ export default {
       open_on_weekends,
     } = request.body;
 
+    const { user_id } = request.params
+
     const orphanageRepository = getRepository(Orphanage);
 
     const requestImages = request.files as Express.Multer.File[];

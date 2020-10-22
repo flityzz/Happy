@@ -1,9 +1,11 @@
 import React, { FormEvent, useState } from "react";
+
 import { Link } from "react-router-dom";
-import "../styles/pages/login.css";
-import { FiCheck, FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft, FiCheck } from "react-icons/fi";
 
 import LoginBackground from "../components/LoginBackground";
+
+import '../styles/pages/loginpage.css'
 
 export default function Login() {
   const [remember_me, setRemember_me] = useState<boolean>(false);
@@ -35,12 +37,10 @@ export default function Login() {
         <Link to="/" className="return">
           <FiArrowLeft
             color="#15C3D6"
-            style={{
-              height: 24,
-              width: 24,
-            }}
+            size={24}
           />
         </Link>
+
         <form className="login-wrapper" onSubmit={handleSubmit}>
           <h1>Fazer Login</h1>
 
