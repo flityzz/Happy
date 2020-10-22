@@ -1,9 +1,5 @@
 <h1 align="center">
-<<<<<<< HEAD
-    <img alt="Happy" title="Happy" src="./web/src/images/git-readme-logo"/>
-=======
-    <img alt="Happy" title="Happy" src="./web/src/images/landing.svg" />
->>>>>>> b2d593e1be4d1926da0351ab153aa868edc124f7
+    <img alt="Happy" title="Happy" src="./web/src/images/git-readme-logo.svg"/>
 </h1>
 
 <p align="center">
