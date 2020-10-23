@@ -3,14 +3,13 @@ import { getRepository } from "typeorm";
 
 import orphanageView from "../views/orphanages_view";
 import Orphanage from "../models/Orphanage";
-import User from '../models/User';
+import User from "../models/User";
 
 const fs = require("fs");
 const { promisify } = require("util");
 const unlinkAsync = promisify(fs.unlink);
 
 import * as Yup from "yup";
-
 
 export default {
   async index(request: Request, response: Response) {
@@ -46,7 +45,7 @@ export default {
       open_on_weekends,
     } = request.body;
 
-    const { user_id } = request.params
+    const { user_id } = request.params;
 
     const orphanageRepository = getRepository(Orphanage);
 
@@ -62,10 +61,10 @@ export default {
       about,
       instructions,
       opening_hours,
-      open_on_weekends: open_on_weekends == 'true',
-      user: parseInt(user_id),
-      images
-    }
+      open_on_weekends: open_on_weekends == "true",
+      user: user_id,
+      images,
+    };
 
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -75,7 +74,6 @@ export default {
       instructions: Yup.string().required(),
       opening_hours: Yup.string().required(),
       open_on_weekends: Yup.boolean().required(),
-      user: Yup.number().required(),
       images: Yup.array(
         Yup.object().shape({
           path: Yup.string().required(),
@@ -99,25 +97,23 @@ export default {
 
     console.log({
       id,
-      user_id
-    })
-
-    const userRepository = getRepository(User);
-    const orphanageRepository = getRepository(Orphanage)
-
-    const user = await userRepository.findOneOrFail(user_id, {
-    relations: ['orphanages']
+      user_id,
     });
 
-    const orphanage = await user.orphanages.map(orphanage => orphanage.id === parseInt(id)) 
-    
-    
-    // await orphanage.images.map((image) => {
-    //   return unlinkAsync(`D:/PROJETOS/happy/backend/uploads/${image.path}`);
-    // });
+    const userRepository = getRepository(User);
+    const orphanageRepository = getRepository(Orphanage);
 
-    // await orphanageRepository.delete(id);
+    const user = await userRepository.findOneOrFail(user_id, {
+      relations: ["orphanages"],
+    });
 
-    // return response.json({ message: "orphanage deleted" });
+    await user.orphanages.map((orphanage) => {
+      if (orphanage.id === parseInt(id)) {
+        
+        orphanageRepository.delete(id);
+      }
+    });
+
+     return response.json({ message: `orphanage deleted` });
   },
 };
