@@ -15,7 +15,6 @@ export default class User {
   @OneToMany(() => Orphanage, orphanage => orphanage.user, {
     cascade: ["insert", "update"],
   })
-
-  @JoinColumn({ name: "orphanage_id" })
+  @JoinColumn({ name: "user_id" })
   orphanages: Orphanage[];
 }

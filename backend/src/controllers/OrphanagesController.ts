@@ -3,6 +3,7 @@ import { getRepository } from "typeorm";
 
 import orphanageView from "../views/orphanages_view";
 import Orphanage from "../models/Orphanage";
+import User from '../models/User';
 
 const fs = require("fs");
 const { promisify } = require("util");
@@ -62,8 +63,9 @@ export default {
       instructions,
       opening_hours,
       open_on_weekends: open_on_weekends == 'true',
-      images,
-    };
+      user: parseInt(user_id),
+      images
+    }
 
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -73,6 +75,7 @@ export default {
       instructions: Yup.string().required(),
       opening_hours: Yup.string().required(),
       open_on_weekends: Yup.boolean().required(),
+      user: Yup.number().required(),
       images: Yup.array(
         Yup.object().shape({
           path: Yup.string().required(),
@@ -92,20 +95,29 @@ export default {
   },
 
   async delete(request: Request, response: Response) {
-    const { id } = request.params;
+    const { id, user_id } = request.params;
 
-    const orphanageRepository = getRepository(Orphanage);
+    console.log({
+      id,
+      user_id
+    })
 
-    const orphanage = await orphanageRepository.findOneOrFail(id, {
-      relations: ["images"],
+    const userRepository = getRepository(User);
+    const orphanageRepository = getRepository(Orphanage)
+
+    const user = await userRepository.findOneOrFail(user_id, {
+    relations: ['orphanages']
     });
+
+    const orphanage = await user.orphanages.map(orphanage => orphanage.id === parseInt(id)) 
     
-    await orphanage.images.map((image) => {
-      return unlinkAsync(`D:/PROJETOS/happy/backend/uploads/${image.path}`);
-    });
+    
+    // await orphanage.images.map((image) => {
+    //   return unlinkAsync(`D:/PROJETOS/happy/backend/uploads/${image.path}`);
+    // });
 
-    await orphanageRepository.delete(id);
+    // await orphanageRepository.delete(id);
 
-    return response.json({ message: "orphanage deleted" });
+    // return response.json({ message: "orphanage deleted" });
   },
 };

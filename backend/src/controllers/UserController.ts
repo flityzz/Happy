@@ -5,7 +5,15 @@ import * as Yup from "yup";
 import User from "../models/User";
 
 export default {
-  async index(request: Request, response: Response) {},
+  async index(request: Request, response: Response) {
+    const userRepository = getRepository(User);
+
+    const users = await userRepository.find({
+      relations: ["orphanages"],
+    });
+
+    return response.json(users);
+  },
 
   async create(request: Request, response: Response) {
     const { email, password } = request.body;

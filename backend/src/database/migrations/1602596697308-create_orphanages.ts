@@ -53,7 +53,7 @@ export class createOrphanages1602596697308 implements MigrationInterface {
           {
             name: "user_id",
             type: "integer",
-          },
+          }
         ],
         foreignKeys: [
           {
