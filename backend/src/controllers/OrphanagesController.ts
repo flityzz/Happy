@@ -7,7 +7,7 @@ import User from "../models/User";
 
 const fs = require("fs");
 const { promisify } = require("util");
-const unlinkAsync = promisify(fs.unlink);
+//const unlinkAsync = promisify(fs.unlink);
 
 import * as Yup from "yup";
 
@@ -94,11 +94,6 @@ export default {
 
   async delete(request: Request, response: Response) {
     const { id, user_id } = request.params;
-
-    console.log({
-      id,
-      user_id,
-    });
 
     const userRepository = getRepository(User);
     const orphanageRepository = getRepository(Orphanage);

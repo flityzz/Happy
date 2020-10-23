@@ -13,8 +13,8 @@ const upload = multer(uploadConfig);
 //gets
 routes.get('/users', UserController.index)
 
-routes.get("/users/:user_id/orphanages", OrphanageController.index);
-routes.get("/users/:user_id/orphanages/:id", OrphanageController.show);
+routes.get("/orphanages", OrphanageController.index);
+routes.get("/orphanages/:id", OrphanageController.show);
 
 //posts
 routes.post("/users/:user_id/orphanages", upload.array('images'), OrphanageController.create);
