@@ -36,7 +36,7 @@ export default class Orphanage {
 
   @ManyToOne(() => User, (user) => user.orphanages)
   @JoinColumn({ name: "user_id" })
-  user: User;
+  user: String;
 
   @OneToMany(() => Image, (image) => image.orphanage, {
     cascade: ["insert", "update"],

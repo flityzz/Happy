@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
+import bcrypt from "bcrypt";
 
 import * as Yup from "yup";
 import User from "../models/User";
@@ -20,9 +21,11 @@ export default {
 
     const userRepository = getRepository(User);
 
+    let hash = bcrypt.hashSync(password, 10);
+
     const data = {
       email,
-      password,
+      password: hash,
     };
 
     const schema = Yup.object().shape({
@@ -40,4 +43,6 @@ export default {
 
     return response.json(user);
   },
+
+  async authenticate(request: Request, response: Response) {},
 };

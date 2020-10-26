@@ -7,7 +7,7 @@ import User from "../models/User";
 
 const fs = require("fs");
 const { promisify } = require("util");
-//const unlinkAsync = promisify(fs.unlink);
+const unlinkAsync = promisify(fs.unlink);
 
 import * as Yup from "yup";
 
@@ -74,6 +74,7 @@ export default {
       instructions: Yup.string().required(),
       opening_hours: Yup.string().required(),
       open_on_weekends: Yup.boolean().required(),
+      user: Yup.string().required(),
       images: Yup.array(
         Yup.object().shape({
           path: Yup.string().required(),
@@ -101,6 +102,8 @@ export default {
     const user = await userRepository.findOneOrFail(user_id, {
       relations: ["orphanages"],
     });
+
+    
 
     await user.orphanages.map((orphanage) => {
       if (orphanage.id === parseInt(id)) {

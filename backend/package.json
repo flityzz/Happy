@@ -8,6 +8,7 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/yup": "^0.29.8",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
