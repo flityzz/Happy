@@ -1,6 +1,7 @@
-import { Request, Response } from "express";
+import { json, Request, Response } from "express";
 import { getRepository } from "typeorm";
-import bcrypt from "bcrypt";
+import bcrypt, { hashSync } from "bcrypt";
+import jwt from "jsonwebtoken";
 
 import * as Yup from "yup";
 import User from "../models/User";
@@ -21,7 +22,7 @@ export default {
 
     const userRepository = getRepository(User);
 
-    let hash = bcrypt.hashSync(password, 10);
+    const hash = await hashSync(password, 10);
 
     const data = {
       email,
@@ -44,5 +45,24 @@ export default {
     return response.json(user);
   },
 
-  async authenticate(request: Request, response: Response) {},
+  async authenticate(request: Request, response: Response) {
+    const { email, password } = request.body;
+
+    const userRepository = getRepository(User);
+    const user = await userRepository.findOneOrFail({ email: email });
+
+    if (user.email) {
+      const hash = user.password.toString();
+      if (bcrypt.compareSync(password, hash)) {
+        // Passwords match
+        const token = jwt.sign({ id: user.id }, "secret", {
+          expiresIn: 86400,
+        });
+
+        return response.json(token);
+      } else {
+        return response.json({ message: "password dont match" });
+      }
+    } 
+  },
 };
