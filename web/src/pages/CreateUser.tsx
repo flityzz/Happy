@@ -1,45 +1,40 @@
-import React, { FormEvent, useState } from "react";
 
-import { Link } from "react-router-dom";
-import { FiArrowLeft, FiCheck } from "react-icons/fi";
-
+import React, { FormEvent, useState} from "react";
+import { FiArrowLeft } from "react-icons/fi";
+import { Link} from "react-router-dom";
 import LoginBackground from "../components/LoginBackground";
+import api from '../services/api'
 
-import "../styles/pages/loginpage.css";
+import "../styles/pages/createuser.css";
 
-export default function Login() {
-  const [remember_me, setRemember_me] = useState<boolean>(false);
-
+export default function CreateUser({ history }) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  function handleCheckedClick() {
-    if (remember_me === false) {
-      setRemember_me(true);
-    } else {
-      setRemember_me(false);
-    }
-  }
-
-  function handleSubmit(event: FormEvent) {
+  function handleCreateAccount(event: FormEvent) {
     event.preventDefault();
-    console.log({
-      email,
-      password,
-      remember_me,
-    });
+
+    api.post('/users', {
+        email: email,
+        password: password
+    })
+    
+    alert('conta criada com sucesso')
+
+    history.push('/login')
   }
 
   return (
-    <div id="login-container">
+    <div id="create-user-container">
       <LoginBackground />
+
       <aside>
         <Link to="/" className="return">
           <FiArrowLeft color="#15C3D6" size={24} />
         </Link>
 
-        <form className="login-wrapper" onSubmit={handleSubmit}>
-          <h1>Fazer Login</h1>
+        <form onSubmit={handleCreateAccount} className="create-wrapper">
+          <h1>Criar uma conta</h1>
 
           <label htmlFor="email">
             <span>E-mail</span>
@@ -81,36 +76,14 @@ export default function Login() {
             />
           )}
 
-          <div className="options">
-            <div className="remember-me">
-              {remember_me ? (
-                <label className="check-box-true" onClick={handleCheckedClick}>
-                  <FiCheck size={20} />
-                </label>
-              ) : (
-                <label
-                  className="check-box-false"
-                  onClick={handleCheckedClick}
-                ></label>
-              )}
-              <span>Lembrar-me</span>
-            </div>
-            <Link to="/" className="forgot-password">
-              <span>Esqueci minha senha</span>
-            </Link>
-          </div>
-
           {password === "" ? (
             <button className="enter-not-avaliable" disabled>
-              Entrar
+              Criar Conta
             </button>
           ) : (
-            <button className="enter">Entrar</button>
+            <button className="enter">Criar Conta</button>
           )}
 
-          <Link to="/user/create" className="create-a-account">
-            <span>Não possui uma conta? Crie agora!</span>
-          </Link>
         </form>
       </aside>
     </div>

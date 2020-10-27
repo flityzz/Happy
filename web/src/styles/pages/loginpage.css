@@ -107,7 +107,7 @@
 #login-container aside .login-wrapper .options {
   display: flex;
   flex-direction: row;
-
+  
   justify-content: space-between;
 }
 
@@ -147,4 +147,11 @@
 #login-container aside .login-wrapper .options .forgot-password {
   cursor: pointer;
   text-decoration: none;
+}
+
+#login-container aside .login-wrapper .create-a-account {
+  text-decoration: none;
+  text-align: center;
+  height: 10px;
+  padding-top: 10px;
 }

@@ -59,7 +59,7 @@ export default {
           expiresIn: 86400,
         });
 
-        return response.json(token);
+        return response.json(token)
       } else {
         return response.json({ message: "password dont match" });
       }
