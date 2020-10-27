@@ -17,13 +17,13 @@ routes.get("/orphanages", OrphanageController.index);
 routes.get("/orphanages/:id", OrphanageController.show);
 
 //posts
-routes.post("/users/:user_id/orphanages", upload.array('images'), OrphanageController.create);
+routes.post("/users/:user_id/orphanages", upload.array('images'), OrphanageController.create); //token route
 routes.post("/users", UserController.create);
 routes.post("/users/auth", UserController.authenticate)
 
 
 //deletes
-routes.delete("/users/:user_id/orphanages/:id", OrphanageController.delete);
+routes.delete("/users/:user_id/orphanages/:id", OrphanageController.delete); //token route
 
 
 export default routes;

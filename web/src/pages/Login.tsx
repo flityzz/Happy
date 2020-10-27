@@ -3,6 +3,8 @@ import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowLeft, FiCheck } from "react-icons/fi";
 
+import api from '../services/api'
+
 import LoginBackground from "../components/LoginBackground";
 
 import "../styles/pages/loginpage.css";
@@ -23,11 +25,13 @@ export default function Login() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    console.log({
-      email,
-      password,
-      remember_me,
-    });
+    api.post('/users/auth', {
+      email: email,
+      password: password
+    }).then(response => {
+      //token
+      console.log(response.data)
+    })
   }
 
   return (
