@@ -9,7 +9,7 @@ import LoginBackground from "../components/LoginBackground";
 
 import "../styles/pages/loginpage.css";
 
-export default function Login() {
+export default function Login({ history }) {
   const [remember_me, setRemember_me] = useState<boolean>(false);
 
   const [email, setEmail] = useState<string>("");
@@ -23,14 +23,15 @@ export default function Login() {
     }
   }
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    api.post('/users/auth', {
+    await api.post('/users/auth', {
       email: email,
       password: password
     }).then(response => {
-      //token
-      console.log(response.data)
+      const token = response.data
+      sessionStorage.setItem('@session_token', token);
+      history.push('/dashboard')
     })
   }
 

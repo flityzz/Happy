@@ -12,6 +12,7 @@ const upload = multer(uploadConfig);
 
 //gets
 routes.get('/users', UserController.index)
+routes.get('/users/:user_id', UserController.show)
 
 routes.get("/orphanages", OrphanageController.index);
 routes.get("/orphanages/:id", OrphanageController.show);

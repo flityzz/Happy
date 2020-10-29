@@ -17,6 +17,18 @@ export default {
     return response.json(users);
   },
 
+  async show(request: Request, response: Response){
+    const { user_id } = request.params;
+
+    const userRepository = getRepository(User);
+
+    const user = await userRepository.findOneOrFail(user_id, { 
+      relations: ['orphanages']
+    });
+
+    response.json(user)
+  },
+
   async create(request: Request, response: Response) {
     const { email, password } = request.body;
 
@@ -56,13 +68,13 @@ export default {
       if (bcrypt.compareSync(password, hash)) {
         // Passwords match
         const token = jwt.sign({ id: user.id }, "secret", {
-          expiresIn: 86400,
+          expiresIn: 864000,
         });
 
         return response.json(token)
       } else {
         return response.json({ message: "password dont match" });
       }
-    } 
+    }
   },
 };
