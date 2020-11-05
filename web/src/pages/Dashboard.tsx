@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import jwt from "jsonwebtoken";
 
 import api from "../services/api";
+import "../styles/pages/dashboard.css";
+import asideLogo from '../images/dashboard-logo.svg';
+import logOut from '../images/Voltar.svg';
+import { Link } from "react-router-dom";
 
 interface User {
   id: number;
@@ -17,7 +21,7 @@ interface User {
 
 export default function Dashboard() {
   const [token, setToken] = useState<any>("");
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User>(); //todas as info do user
 
   useEffect(() => {
     const token = sessionStorage.getItem("@session_token");
@@ -33,8 +37,19 @@ export default function Dashboard() {
   }, [token]);
 
   return token ? (
-    <div className="user-container" style={{ color: "#000" }}>
-      <h1>logado</h1>
+    <div id="user-container">
+      <aside>
+
+        <div className="aside-logo"><img src={asideLogo} alt="logo"/></div>
+
+        <div className="action-buttons">
+          <button className="approved-orphanages">button</button>
+          <button className="pending-orphanages">button</button>
+        </div>
+
+        <Link to="/" className="logout"><img src={logOut} alt="voltar"/></Link>
+
+      </aside>
     </div>
   ) : (
     <h1>nao logado</h1>
