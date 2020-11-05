@@ -43,8 +43,8 @@ export default function Dashboard() {
         <div className="aside-logo"><img src={asideLogo} alt="logo"/></div>
 
         <div className="action-buttons">
-          <button className="approved-orphanages">button</button>
-          <button className="pending-orphanages">button</button>
+          <div className="approved-orphanages">button</div>
+          <div className="pending-orphanages">button</div>
         </div>
 
         <Link to="/" className="logout"><img src={logOut} alt="voltar"/></Link>
