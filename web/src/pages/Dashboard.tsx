@@ -8,6 +8,8 @@ import asideLogo from '../images/dashboard-logo.svg';
 import logOut from '../images/Voltar.svg';
 import { Link } from "react-router-dom";
 
+import { FiMapPin, FiAlertCircle } from 'react-icons/fi';
+ 
 interface User {
   id: number;
   email: string;
@@ -43,8 +45,8 @@ export default function Dashboard() {
         <div className="aside-logo"><img src={asideLogo} alt="logo"/></div>
 
         <div className="action-buttons">
-          <div className="approved-orphanages">button</div>
-          <div className="pending-orphanages">button</div>
+          <div className="approved-orphanages"><FiMapPin size={30}/></div>
+          <div className="pending-orphanages"><FiAlertCircle size={30}/></div>
         </div>
 
         <Link to="/" className="logout"><img src={logOut} alt="voltar"/></Link>
