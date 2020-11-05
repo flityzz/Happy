@@ -5,10 +5,10 @@ import jwt from "jsonwebtoken";
 import api from "../services/api";
 import "../styles/pages/dashboard.css";
 import asideLogo from '../images/dashboard-logo.svg';
-import logOut from '../images/Voltar.svg';
+
 import { Link } from "react-router-dom";
 
-import { FiMapPin, FiAlertCircle } from 'react-icons/fi';
+import { FiMapPin, FiAlertCircle, FiPower } from 'react-icons/fi';
  
 interface User {
   id: number;
@@ -49,9 +49,18 @@ export default function Dashboard() {
           <div className="pending-orphanages"><FiAlertCircle size={30}/></div>
         </div>
 
-        <Link to="/" className="logout"><img src={logOut} alt="voltar"/></Link>
+        <Link to="/" className="logout"><FiPower size={30}/></Link>
 
       </aside>
+
+      <div className="dashboard">
+        <header>
+          <h1 className="title">Orfanatos cadastrados</h1>
+          <span className="orphanages-number">2 orfanatos</span>
+        </header>
+
+      </div>
+      
     </div>
   ) : (
     <h1>nao logado</h1>

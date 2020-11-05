@@ -19,9 +19,17 @@
   width: 4.8rem;
 }
 
-#user-container aside .logout img {
+#user-container aside .logout {
   height: 4.8rem;
   width: 4.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #12afcb;
+  border-radius: 1.6rem;
+  transition: 0.2s;
+  color: #fff;
 }
 
 #user-container aside .action-buttons {
@@ -54,4 +62,37 @@
 
   background: #12afcb;
   border-radius: 1.6rem;
+}
+
+#user-container .dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding: 6.4rem 11.2rem 6.4rem 11.2rem;
+  box-sizing: border-box;
+}
+
+#user-container .dashboard header {
+  display: flex;
+  flex-direction: row;
+  height: 4.6rem;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #D3E2E5;
+}
+
+#user-container .dashboard header .title {
+  color: #4d6f80;
+
+  font-size: 32px;
+  line-height: 34px;
+}
+
+#user-container .dashboard header span {
+  font-size: 16px;
+  line-height: 22px;
+
+  text-align: right;
+  color: #8fa7b3;
 }
