@@ -4,6 +4,7 @@
 }
 
 #user-container aside {
+  position: fixed;
   height: 100vh;
   width: 9.6rem;
   background-color: #15c3d6;
@@ -71,15 +72,20 @@
   height: 100vh;
   padding: 6.4rem 11.2rem 6.4rem 11.2rem;
   box-sizing: border-box;
+  align-items: center;
+  
 }
 
 #user-container .dashboard header {
+  
   display: flex;
   flex-direction: row;
   height: 4.6rem;
+  width: 1205px;
+  
   justify-content: space-between;
-
-  border-bottom: 1px solid #D3E2E5;
+  border-bottom: 1px solid #d3e2e5;
+  
 }
 
 #user-container .dashboard header .title {
@@ -95,4 +101,25 @@
 
   text-align: right;
   color: #8fa7b3;
+}
+
+#user-container .dashboard .orphanages-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  padding: 4.6rem;
+}
+
+#user-container .dashboard .orphanage {
+  width: 600px;
+  height: 309px;
+  margin: .5rem;
+  border: 1px solid #d3e2e5;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background-color: #ffffff;
 }

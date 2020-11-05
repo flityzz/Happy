@@ -59,6 +59,14 @@ export default function Dashboard() {
           <span className="orphanages-number">2 orfanatos</span>
         </header>
 
+        <div className="orphanages-list">
+          <div className="orphanage"></div>
+          <div className="orphanage"></div>
+          <div className="orphanage"></div>
+          <div className="orphanage"></div>
+          <div className="orphanage"></div>
+        </div>
+
       </div>
       
     </div>
