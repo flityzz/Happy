@@ -31,6 +31,7 @@ export default function Login({ history }) {
     }).then(response => {
       const token = response.data
       sessionStorage.setItem('@session_token', token);
+      
       history.push('/dashboard')
     })
   }

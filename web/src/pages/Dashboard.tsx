@@ -9,6 +9,9 @@ import asideLogo from '../images/dashboard-logo.svg';
 import { Link } from "react-router-dom";
 
 import { FiMapPin, FiAlertCircle, FiPower } from 'react-icons/fi';
+import { Map, TileLayer, Marker } from "react-leaflet";
+
+import happyMapIcon from '../utils/mapIcon';
  
 interface User {
   id: number;
@@ -60,11 +63,37 @@ export default function Dashboard() {
         </header>
 
         <div className="orphanages-list">
-          <div className="orphanage"></div>
-          <div className="orphanage"></div>
-          <div className="orphanage"></div>
-          <div className="orphanage"></div>
-          <div className="orphanage"></div>
+          <div className="orphanage">
+          <Map
+                center={[-3.7491403, -38.5568483]}
+                zoom={16}
+                style={{ width: "100%", height: 227 }}
+                dragging={false}
+                touchZoom={false}
+                zoomControl={false}
+                scrollWheelZoom={false}
+                doubleClickZoom={false}
+              >
+                <TileLayer
+                  url={"https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+                />
+                <Marker
+                  interactive={false}
+                  icon={happyMapIcon}
+                  position={[-3.7491403, -38.5568483]}
+                />
+              </Map>
+            <div className="actions">
+              <h1>Orf. Esperança</h1>
+
+              <div className="buttons">
+                <Link to='/orphanages/create' className="edit-orphanage"></Link>
+                <div className="delete-orphanage"></div>
+              </div>
+
+            </div>
+          </div>
+          
         </div>
 
       </div>
