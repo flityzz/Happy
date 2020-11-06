@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import api from "../services/api";
 import "../styles/pages/dashboard.css";
 import asideLogo from "../images/dashboard-logo.svg";
+import DeleteOrphanageAlert from '../components/DeleteOrphanageAlert';
 
 import { Link } from "react-router-dom";
 
@@ -79,7 +80,7 @@ export default function Dashboard() {
         <div className="orphanages-list">
           {user?.orphanages.map(orphanage => {
             return (
-              <div className="orphanage">
+              <div className="orphanage" key={orphanage.id}>
               <Map
                 center={[orphanage.latitude, orphanage.longitude]}
                 zoom={16}
@@ -106,7 +107,7 @@ export default function Dashboard() {
                   <Link to="/orphanages/create" className="edit-orphanage">
                     <FiEdit3 size={30} />
                   </Link>
-                  <div className="delete-orphanage">
+                  <div className="delete-orphanage" onClick={() => DeleteOrphanageAlert(orphanage.name, user.id, orphanage.id)}>
                     <FiTrash size={30} />
                   </div>
                 </div>
