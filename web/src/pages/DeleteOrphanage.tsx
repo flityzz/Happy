@@ -11,7 +11,7 @@ export default function DeleteOrphanage(props) {
     const { userId, orphanageId} = props.location.state
     await api.delete(`/users/${userId}/orphanages/${orphanageId}`);
 
-    return alert("orfanato deletado");
+    return alert('orfanato deletado')
   }
 
   return (

@@ -14,6 +14,7 @@ import {
   FiPower,
   FiEdit3,
   FiTrash,
+  FiPlus,
 } from "react-icons/fi";
 import { Map, TileLayer, Marker } from "react-leaflet";
 
@@ -116,6 +117,10 @@ export default function Dashboard() {
           })}
         </div>
       </div>
+
+      <Link to="/orphanages/create" className="create-orphanage">
+        <FiPlus size={32} color="#fff" />
+      </Link>
     </div>
   ) : (
     <h1>nao logado</h1>

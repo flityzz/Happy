@@ -65,6 +65,30 @@
   border-radius: 1.6rem;
 }
 
+#user-container .create-orphanage {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+
+  width: 64px;
+  height: 64px;
+
+  z-index: 10;
+
+  background: #15c3d6;
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+#page-map .create-orphanage:hover {
+  background: #17d6eb;
+}
+
 #user-container .dashboard {
   display: flex;
   flex-direction: column;

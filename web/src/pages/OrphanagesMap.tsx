@@ -68,10 +68,6 @@ export default function OrphanagesMap() {
           );
         })}
       </Map>
-
-      <Link to="/orphanages/create" className="create-orphanage">
-        <FiPlus size={32} color="#fff" />
-      </Link>
     </div>
   );
 }
