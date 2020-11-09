@@ -106,7 +106,7 @@ export default function Dashboard() {
                   <Link to="/orphanages/create" className="edit-orphanage">
                     <FiEdit3 size={30} />
                   </Link>
-                  <Link to="/dashboard/delete" className="delete-orphanage">
+                  <Link to={{ pathname: '/warning', state: { name: orphanage.name, userId: user.id, orphanageId: orphanage.id} }} className="delete-orphanage">
                     <FiTrash size={30} />
                   </Link>
                 </div>
