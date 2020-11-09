@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 import api from "../services/api";
 import "../styles/pages/dashboard.css";
 import asideLogo from "../images/dashboard-logo.svg";
-import DeleteOrphanageAlert from '../components/DeleteOrphanageAlert';
 
 import { Link } from "react-router-dom";
 
@@ -107,9 +106,9 @@ export default function Dashboard() {
                   <Link to="/orphanages/create" className="edit-orphanage">
                     <FiEdit3 size={30} />
                   </Link>
-                  <div className="delete-orphanage" onClick={() => DeleteOrphanageAlert(orphanage.name, user.id, orphanage.id)}>
+                  <Link to="/dashboard/delete" className="delete-orphanage">
                     <FiTrash size={30} />
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>

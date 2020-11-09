@@ -1,8 +1,6 @@
 #user-container {
   display: flex;
   flex-direction: row;
-
-  z-index: 10;
 }
 
 #user-container aside {
@@ -70,18 +68,19 @@
 #user-container .dashboard {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: calc(100vw - 9.6rem);
   height: 100vh;
-  padding: 6.4rem 11.2rem 6.4rem 11.2rem;
+  margin: 6.4rem;
   box-sizing: border-box;
   align-items: center;
+  justify-content: center;
 }
 
 #user-container .dashboard header {
   display: flex;
   flex-direction: row;
   height: 4.6rem;
-  width: 1205px;
+  width: 1305px;
 
   justify-content: space-between;
   border-bottom: 1px solid #d3e2e5;
@@ -108,13 +107,13 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   height: 100vh;
-  width: 100vw;
+  width: calc(100vw - 9.6rem);
   justify-content: center;
-  padding: 4.6rem;
+  padding: 4.8rem 4.8rem;
 }
 
 #user-container .dashboard .orphanage {
-  width: 600px;
+  width: 544px;
   height: 309px;
   margin: 0.5rem;
   border: 1px solid #d3e2e5;
