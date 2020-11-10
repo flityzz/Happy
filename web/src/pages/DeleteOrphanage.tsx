@@ -22,7 +22,7 @@ export default function DeleteOrphanage(props) {
         </div>
         <span>Você tem certeza que quer excluir {props.location.state.name}?</span>
         <Link to="/dashboard" className="back">
-          Voltar para o mapa
+          Voltar para o perfil
         </Link>
       </div>
 

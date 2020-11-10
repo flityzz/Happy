@@ -34,6 +34,9 @@ export default class Orphanage {
   @Column()
   open_on_weekends: Boolean;
 
+  @Column()
+  pending: Boolean;
+
   @ManyToOne(() => User, (user) => user.orphanages)
   @JoinColumn({ name: "user_id" })
   user: String;
