@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import api from "../services/api";
 import "../styles/pages/dashboard.css";
 import asideLogo from "../images/dashboard-logo.svg";
+import backgroundPending from "../images/landing.svg";
 
 import { Link } from "react-router-dom";
 
@@ -28,6 +29,7 @@ interface User {
     name: string;
     latitude: number;
     longitude: number;
+    pending: boolean;
   }>;
 }
 
@@ -69,53 +71,79 @@ export default function Dashboard() {
         </Link>
       </aside>
 
-      <div className="dashboard">
-        <header>
-          <h1 className="title">Orfanatos cadastrados</h1>
-          <span className="orphanages-number">
-            {user?.orphanages.length} orfanatos
-          </span>
-        </header>
+      {user?.orphanages.map((orphanage) => {
+        if (orphanage.pending === false) {
+          return (
+            <div className="dashboard">
+              <header>
+                <h1 className="title">Orfanatos cadastrados</h1>
+                <span className="orphanages-number">
+                  {user?.orphanages.length} orfanatos
+                </span>
+              </header>
 
-        <div className="orphanages-list">
-          {user?.orphanages.map(orphanage => {
-            return (
-              <div className="orphanage" key={orphanage.id}>
-              <Map
-                center={[orphanage.latitude, orphanage.longitude]}
-                zoom={16}
-                style={{ width: "100%", height: 227 }}
-                dragging={false}
-                touchZoom={false}
-                zoomControl={false}
-                scrollWheelZoom={false}
-                doubleClickZoom={false}
-              >
-                <TileLayer
-                  url={"https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-                />
-                <Marker
-                  interactive={false}
-                  icon={happyMapIcon}
-                  position={[orphanage.latitude, orphanage.longitude]}
-                />
-              </Map>
-              <div className="actions">
-                <h1>{orphanage.name}</h1>
+              <div className="orphanages-list">
+                {user?.orphanages.map((orphanage) => {
+                  return (
+                    <div className="orphanage" key={orphanage.id}>
+                      <Map
+                        center={[orphanage.latitude, orphanage.longitude]}
+                        zoom={16}
+                        style={{ width: "100%", height: 227 }}
+                        dragging={false}
+                        touchZoom={false}
+                        zoomControl={false}
+                        scrollWheelZoom={false}
+                        doubleClickZoom={false}
+                      >
+                        <TileLayer
+                          url={
+                            "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                          }
+                        />
+                        <Marker
+                          interactive={false}
+                          icon={happyMapIcon}
+                          position={[orphanage.latitude, orphanage.longitude]}
+                        />
+                      </Map>
+                      <div className="actions">
+                        <h1>{orphanage.name}</h1>
 
-                <div className="buttons">
-                  <Link to="/orphanages/create" className="edit-orphanage">
-                    <FiEdit3 size={30} />
-                  </Link>
-                  <Link to={{ pathname: '/warning', state: { name: orphanage.name, userId: user.id, orphanageId: orphanage.id} }} className="delete-orphanage">
-                    <FiTrash size={30} />
-                  </Link>
-                </div>
+                        <div className="buttons">
+                          <Link
+                            to="/orphanages/create"
+                            className="edit-orphanage"
+                          >
+                            <FiEdit3 size={30} />
+                          </Link>
+                          <Link
+                            to={{
+                              pathname: "/warning",
+                              state: {
+                                name: orphanage.name,
+                                userId: user.id,
+                                orphanageId: orphanage.id,
+                              },
+                            }}
+                            className="delete-orphanage"
+                          >
+                            <FiTrash size={30} />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-            )
-          })}
-        </div>
+          );
+        }
+      })}
+
+      <div className="pending-view">
+        <h1>No momento você ainda não possui orfanatos cadastrados</h1>
+        <img src={backgroundPending} alt="logo" />
       </div>
 
       <Link to="/orphanages/create" className="create-orphanage">
