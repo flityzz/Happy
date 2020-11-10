@@ -14,7 +14,7 @@ export default function SideBar(){
 
         <footer>
           <button type="button" onClick={goBack}>
-            <FiArrowLeft size={24} color="#FFF" />
+            <FiArrowLeft size={30} color="#FFF" />
           </button>
         </footer>
       </aside>

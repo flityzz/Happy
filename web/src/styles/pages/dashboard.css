@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 3.2rem 3.2rem;
+  padding: 3.2rem 2.4rem;
 }
 
 #user-container aside .aside-logo img {
@@ -31,6 +31,12 @@
   border-radius: 1.6rem;
   transition: 0.2s;
   color: #fff;
+
+  transition: background-color 0.2s;
+}
+
+#user-container aside .logout:hover {
+  background: #17d6eb;
 }
 
 #user-container aside .action-buttons {
@@ -172,17 +178,18 @@
   width: 10.8rem;
 }
 
-#user-container .dashboard .orphanage .actions .buttons .edit-orphanage, .delete-orphanage{
+#user-container .dashboard .orphanage .actions .buttons .edit-orphanage,
+.delete-orphanage {
   height: 4.8rem;
   width: 4.8rem;
 
   border-radius: 1.6rem;
-  background-color: #EBF2F5;
+  background-color: #ebf2f5;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #15C3D6;
+  color: #15c3d6;
 
   cursor: pointer;
 }
