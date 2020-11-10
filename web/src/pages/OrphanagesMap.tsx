@@ -16,6 +16,7 @@ interface Orphanage {
   latitude: number;
   longitude: number;
   name: string;
+  pending: boolean;
 }
 
 export default function OrphanagesMap() {
@@ -51,21 +52,23 @@ export default function OrphanagesMap() {
       >
         <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {orphanages.map((orphanage) => {
-          return (
-            <Marker icon={mapIcon} position={[orphanage.latitude, orphanage.longitude]} key={orphanage.id}>
-              <Popup
-                closeButton={false}
-                minWidth={240}
-                maxWidth={240}
-                className="map-popup"
-              >
-                {orphanage.name}
-                <Link to={`/orphanages/${orphanage.id}`}>
-                  <FiArrowRight size={20} color="#fff" />
-                </Link>
-              </Popup>
-            </Marker>
-          );
+          if(orphanage.pending === false){
+            return (
+              <Marker icon={mapIcon} position={[orphanage.latitude, orphanage.longitude]} key={orphanage.id}>
+                <Popup
+                  closeButton={false}
+                  minWidth={240}
+                  maxWidth={240}
+                  className="map-popup"
+                >
+                  {orphanage.name}
+                  <Link to={`/orphanages/${orphanage.id}`}>
+                    <FiArrowRight size={20} color="#fff" />
+                  </Link>
+                </Popup>
+              </Marker>
+            );
+          }
         })}
       </Map>
     </div>
