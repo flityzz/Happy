@@ -67,14 +67,14 @@ export default function Dashboard() {
         </div>
 
         <div className="action-buttons">
-          <div className="approved-orphanages">
+          <button className="approved-orphanages">
             <FiMapPin size={30} />
-          </div>
+          </button>
           {hasPending ? (
-            <div className="pending-orphanages">
+            <button className="pending-orphanages">
               <FiAlertCircle size={30} />
               <div className="hasPendingOrphanages"></div>
-            </div>
+            </button>
           ) : (
             <div className="pending-orphanages">
               <FiAlertCircle size={30} />

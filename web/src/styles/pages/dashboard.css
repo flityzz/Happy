@@ -54,9 +54,15 @@
   justify-content: center;
   align-items: center;
 
-  background-color: #ffd666;
   border-radius: 1.6rem;
+  background: #12afcb;
+  cursor: pointer;
+  color: #ffffff;
+  border: none;
+}
 
+#user-container aside .action-buttons .approved-orphanages:focus {
+  background-color: #ffd666;
   color: #0089a5;
 }
 
@@ -70,9 +76,22 @@
 
   background: #12afcb;
   border-radius: 1.6rem;
+  cursor: pointer;
+
+  color: #ffffff;
+  border: none;
 }
 
-#user-container aside .action-buttons .pending-orphanages .hasPendingOrphanages {
+#user-container aside .action-buttons .pending-orphanages:focus{
+  background-color: #ffd666;
+  color: #0089a5;
+}
+
+#user-container
+  aside
+  .action-buttons
+  .pending-orphanages
+  .hasPendingOrphanages {
   height: 12px;
   width: 12px;
   z-index: 20;
@@ -81,9 +100,8 @@
   border: 2px solid #12afcb;
 
   position: absolute;
-  margin-left: 18px;
-  margin-bottom: 17px;
-
+  margin-left: 11px;
+  margin-top: -10px;
 }
 
 #user-container .create-orphanage {
