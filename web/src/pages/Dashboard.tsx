@@ -6,6 +6,7 @@ import api from "../services/api";
 import "../styles/pages/dashboard.css";
 import asideLogo from "../images/dashboard-logo.svg";
 import backgroundPending from "../images/landing.svg";
+import alertCircleWithDot from '../images/alert-circle.svg';
 
 import { Link } from "react-router-dom";
 
@@ -35,7 +36,8 @@ interface User {
 
 export default function Dashboard() {
   const [token, setToken] = useState<any>("");
-  const [user, setUser] = useState<User>(); //todas as info do user
+  const [user, setUser] = useState<User>();
+  const [hasPending, setHasPending] = useState<Boolean>(false); //todas as info do user
 
   useEffect(() => {
     const token = sessionStorage.getItem("@session_token");
@@ -50,6 +52,14 @@ export default function Dashboard() {
     }
   }, [token]);
 
+  useEffect(() => {
+    user?.orphanages.map((orphanage) => {
+      if (orphanage.pending === true) {
+        setHasPending(true);
+      }
+    });
+  }, [user]);
+
   return token ? (
     <div id="user-container">
       <aside>
@@ -61,9 +71,16 @@ export default function Dashboard() {
           <div className="approved-orphanages">
             <FiMapPin size={30} />
           </div>
-          <div className="pending-orphanages">
-            <FiAlertCircle size={30} />
-          </div>
+          {hasPending ? (
+            <div className="pending-orphanages">
+              <FiAlertCircle size={30} />
+              <div className="hasPendingOrphanages"></div>
+            </div>
+          ) : (
+            <div className="pending-orphanages">
+              <FiAlertCircle size={30} />
+            </div>
+          )}
         </div>
 
         <Link to="/" className="logout">
